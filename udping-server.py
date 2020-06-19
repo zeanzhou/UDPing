@@ -10,13 +10,13 @@ set_signal_handler(signal_handler)
 
 # Parse argument
 parser = argparse.ArgumentParser()
-parser.add_argument('-b', metavar='server-address', default='0.0.0.0', help='Server address to bind. IPv4/IPv6 address. The default is 0.0.0.0')
+parser.add_argument('server-address', nargs='?', metavar='server-address', default='0.0.0.0', help='Server address to bind. IPv4/IPv6 address. The default is 0.0.0.0')
 parser.add_argument('-p', metavar='server-port', type=int, default=11888, help='Port to listen on. UDPing client must ping this port. The default is 11888.')
 parser.add_argument('-v', action="store_true", help='Verbose mode. Display each UDPing request. The default is off.')
 namespace = parser.parse_args()
 args_dict = vars(namespace)
 
-addr = args_dict['b']
+addr = args_dict['server-address']
 port = args_dict['p']
 is_verbose = args_dict['v']
 
