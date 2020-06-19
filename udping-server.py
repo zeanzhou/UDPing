@@ -1,5 +1,10 @@
 import socket, struct, time, random
 from packet import *
+from ctrl_c_handler import set_signal_handler
+
+def signal_handler(signum, frame=None):
+    exit(1)
+set_signal_handler(signal_handler)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind(('0.0.0.0', 11888))
