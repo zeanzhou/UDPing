@@ -3,6 +3,7 @@ import socket, struct, time, random
 from packet import *
 from ctrl_c_handler import set_signal_handler
 
+# Handle Ctrl-C
 def signal_handler(signum, frame=None):
     exit(1)
 set_signal_handler(signal_handler)
@@ -19,9 +20,12 @@ addr = args_dict['b']
 port = args_dict['p']
 is_verbose = args_dict['v']
 
+# Bind address and port
+print(f'UDPing Server is listening on port {addr} port {port} ...')
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind((addr, port))
 
+# Send UDP pongs
 buffer = bytearray(65536)
 buffer_view = memoryview(buffer)
 while True:
